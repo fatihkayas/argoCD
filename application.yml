@@ -1,18 +1,18 @@
-apiVersion: argo
-kind: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 Metadata:
-  name: myapp
+  name: myapp-argo-application
   namespace: argocd
 spec:
   project:  default
 
   source: 
-    repoURL: https://gitlab.nioyatech.com/project_devops/devops_10/int-10-01.git
+    repoURL: https://github.com/fatihkayas/argoCD.git
     targetRevision: HEAD
     path: dev
   destination:   
     server:  https://kubernetes.default.svc
-    namespace: myappnamespace
+    namespace: myapp
 
   syncPolicy:
     syncOptions :
@@ -20,6 +20,6 @@ spec:
 
     automated: 
       selfHeal: true
-      prune: true #silmek icin
+      prune: true #silmek icin lazim
        
 
